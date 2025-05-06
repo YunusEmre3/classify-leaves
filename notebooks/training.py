@@ -11,7 +11,15 @@ import os
 import pickle
 
 # 2. Load dataset CSV and prepare image paths
-base_path = "/kaggle/input/classify-leaves"
+# If running on Kaggle, use Kaggle input path; otherwise, use local 'data/classify-leaves'
+if os.path.exists("/kaggle/input/classify-leaves"):
+    base_path = "/kaggle/input/classify-leaves"
+else:
+    base_path = "data/classify-leaves"  # Make sure to download and place the dataset here locally
+
+df = pd.read_csv(os.path.join(base_path, "train.csv"))
+df["image_path"] = df["image"].apply(lambda x: os.path.join(base_path, "images", x.replace("images/", "")))
+
 df = pd.read_csv(os.path.join(base_path, "train.csv"))
 df["image_path"] = df["image"].apply(lambda x: os.path.join(base_path, "images", x.replace("images/", "")))
 
