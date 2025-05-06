@@ -31,6 +31,7 @@ classify-leaves/
 │   └── label_encoder.pkl
 ├── requirements.txt
 ├── .gitignore
+├── LICENSE
 └── README.md
 ```
 
